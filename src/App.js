@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import Navbar from "./components/navbar";
+import ResultComponent from "./components/result_comp";
+import init from "./machine";
+
+import "./style.scss";
 
 function App() {
+  // const [file, setFile] = useState()
+  // useEffect(() => {
+  //   newInit(file);
+  // }, [file]);
+  // const handleChange = (e) =>{
+  //   console.log(e.target.files);
+  //   setFile(URL.createObjectURL(e.target.files[0]))
+  // }
+  useEffect(() => {
+    init();
+
+  }, [])
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <main>
+        <h1 className="title">Calories Detector</h1>
+        <p className="description">Deteksi Kalori dengan Menggunakan AI</p>
+        <div id="webcam-container"></div>
+
+        <div id="label-container"></div>
+        <ResultComponent />
+      </main>
+
+      
     </div>
   );
 }

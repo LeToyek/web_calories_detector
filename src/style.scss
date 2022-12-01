@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito", sans-serif;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.result_component {
+  
+  border: 1px solid black;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+nav {
+  background-color: beige;
+  padding: 24px 40px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .left {
+  }
+  .right {
+    ul {
+      display: flex;
+      justify-content: space-between;
+      list-style: none;
+      width: 100%;
+      li {
+        margin-left: 24px;
+        cursor: pointer;
+      }
+      li:hover {
+        color: red;
+      }
+    }
+  }
+}
+main{
+  padding: 40px;
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+  .title{
+    
+  }
+  #webcam-container{
+    margin-top: 24px;
+  }
+  #label-container{
+    margin: 24px 0;
+    display: flex;
+    border: 1px solid black;
+    padding: 12px;
+  }
+}
