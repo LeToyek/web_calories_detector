@@ -1,10 +1,11 @@
 import * as tmImage from '@teachablemachine/image';
+import { dataDescription } from './repository/data';
 // import "https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js";
 // import "https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js";
 
 const URL = "https://teachablemachine.withgoogle.com/models/0HU9VCews/";
 
-let model, webcam, labelContainer, maxPredictions;
+let model, webcam, labelContainer,dataContainer, maxPredictions;
 
 // Load the image model and setup the webcam
 async function init() {
@@ -27,6 +28,24 @@ async function init() {
 
   // append elements to the DOM
   document.getElementById("webcam-container").appendChild(webcam.canvas);
+  dataContainer =  document.getElementById("data-container")
+  
+  var dataName = document.createElement("div")
+  dataName.className = "name"
+  var dataKalPorsi = document.createElement("div")
+  dataKalPorsi.className = "kalPorsi"
+  var dataKalGram = document.createElement("div")
+  dataKalGram.className = "kalGram"
+  var dataGramPorsi = document.createElement("div")
+  dataGramPorsi.className = "gramPorsi"
+  
+  dataContainer.appendChild(dataName)
+  dataContainer.appendChild(dataKalPorsi)
+  dataContainer.appendChild(dataKalGram)
+  dataContainer.appendChild(dataGramPorsi)
+
+  
+
   labelContainer = document.getElementById("label-container");
   for (let i = 0; i < maxPredictions; i++) { // and class labels
       labelContainer.appendChild(document.createElement("div"));
@@ -54,7 +73,16 @@ async function predict() {
     }
       const classPrediction =
           prediction[indexMax].className + ": " + prediction[indexMax].probability.toFixed(2);
+      const dataLabel = dataDescription[indexMax]
       labelContainer.childNodes[0].innerHTML = classPrediction;
+
+      dataContainer.childNodes[0].innerHTML = dataLabel.name
+      dataContainer.childNodes[1].innerHTML = dataLabel.kal_porsi
+      dataContainer.childNodes[2].innerHTML = dataLabel.kal_gram
+      dataContainer.childNodes[3].innerHTML = dataLabel.gram_porsi
   }
 }
+
+
+
 export default init
