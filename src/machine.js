@@ -5,7 +5,7 @@ import { dataDescription } from './repository/data';
 
 const URL = "https://teachablemachine.withgoogle.com/models/0HU9VCews/";
 
-let model, webcam, labelContainer,dataContainer, maxPredictions;
+let model, webcam, labelContainer,dataContainer,foodName, maxPredictions;
 
 // Load the image model and setup the webcam
 async function init() {
@@ -29,6 +29,7 @@ async function init() {
   // append elements to the DOM
   document.getElementById("webcam-container").appendChild(webcam.canvas);
   dataContainer =  document.getElementById("data-container")
+  foodName = document.getElementById("food-name")
   
   var dataName = document.createElement("div")
   dataName.className = "name"
@@ -46,10 +47,10 @@ async function init() {
 
   
 
-  labelContainer = document.getElementById("label-container");
-  for (let i = 0; i < maxPredictions; i++) { // and class labels
-      labelContainer.appendChild(document.createElement("div"));
-  }
+  // labelContainer = document.getElementById("label-container");
+  // for (let i = 0; i < maxPredictions; i++) { // and class labels
+  //     labelContainer.appendChild(document.createElement("div"));
+  // }
 }
 
 
@@ -74,12 +75,12 @@ async function predict() {
       const classPrediction =
           prediction[indexMax].className + ": " + prediction[indexMax].probability.toFixed(2);
       const dataLabel = dataDescription[indexMax]
-      labelContainer.childNodes[0].innerHTML = classPrediction;
+      // labelContainer.childNodes[0].innerHTML = classPrediction;
+      foodName.innerHTML = dataLabel.name
 
-      dataContainer.childNodes[0].innerHTML = dataLabel.name
-      dataContainer.childNodes[1].innerHTML = dataLabel.kal_porsi
-      dataContainer.childNodes[2].innerHTML = dataLabel.kal_gram
-      dataContainer.childNodes[3].innerHTML = dataLabel.gram_porsi
+      dataContainer.childNodes[0].innerHTML = "Kalori/porsi : " + dataLabel.kal_porsi 
+      dataContainer.childNodes[1].innerHTML = "Kalori/gram  : " + dataLabel.kal_gram
+      dataContainer.childNodes[2].innerHTML = "berat makanan: " + dataLabel.gram_porsi
   }
 }
 

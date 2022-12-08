@@ -1,22 +1,17 @@
-import React from 'react'
+import { Squash as Hamburger } from 'hamburger-react';
+import React from "react";
 
 const Navbar = () => {
   return (
     <nav>
       <div className="left">
-        <h2>
-          Calories
-        </h2>
+        <h2>Calories</h2>
       </div>
       <div className="right">
-        <ul>
-          <li>Home</li>
-          <li>Tutorial</li>
-          <li>About</li>
-        </ul>
+        <Hamburger/>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
